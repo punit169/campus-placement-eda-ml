@@ -58,7 +58,7 @@ Due to strict student data privacy regulations (DPDP Act / FERPA) prohibiting pu
 ## 📁 Repository Structure
 
 ```text
-census-income-eda-ml/
+campus-placement-eda-ml/
 ├── data/
 │   ├── raw/
 │   │   └── student_placement_data.csv       # 100,000-row benchmark dataset
@@ -82,8 +82,8 @@ census-income-eda-ml/
 
 ### 1. Clone & Set Up
 ```bash
-git clone https://github.com/punit169/census-income-eda-ml.git
-cd census-income-eda-ml
+git clone https://github.com/punit169/campus-placement-eda-ml.git
+cd campus-placement-eda-ml
 pip install -r requirements.txt
 ```
 
