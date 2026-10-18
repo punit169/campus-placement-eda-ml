@@ -2,7 +2,7 @@
 Campus Placement Benchmark Dataset Generator
 Course: IT462 Machine Learning Project
 Description: Synthesizes a high-fidelity, large-scale (100,000 records) campus placement dataset
-             incorporating mandatory academic, coding, project, and internship indicators.
+             incorporating academic, technical, project, and internship indicators.
 """
 
 import numpy as np
@@ -15,7 +15,7 @@ def generate_placement_dataset(n_samples=100000, random_state=42):
     # 1. Student Identification
     student_ids = [f"STU_{i+1:06d}" for i in range(n_samples)]
     
-    # 2. Academic Factors (Mandatory: CPI)
+    # 2. Academic Factors
     cpi = np.random.normal(loc=7.3, scale=1.1, size=n_samples)
     cpi = np.clip(np.round(cpi, 2), 4.5, 10.0)
     
@@ -33,22 +33,22 @@ def generate_placement_dataset(n_samples=100000, random_state=42):
     cpi = np.where(backlogs >= 2, np.clip(cpi - np.random.uniform(0.3, 0.7, size=n_samples), 4.5, 10.0), cpi)
     cpi = np.round(cpi, 2)
     
-    # 3. Technical & Coding Skills (Mandatory: Coding)
+    # 3. Technical & Coding Skills
     base_coding = (cpi / 10.0) * 5.0 + np.random.normal(loc=2.2, scale=1.8, size=n_samples)
     coding_score = np.clip(np.round(base_coding, 1), 1.0, 10.0)
     
     # DSA (Data Structures & Algorithms) score (1.0 to 10.0)
     dsa_score = np.clip(np.round(coding_score * 0.7 + np.random.normal(loc=1.6, scale=1.4, size=n_samples), 1), 1.0, 10.0)
     
-    # DSA / LeetCode Problems Solved (0 to 800)
+    # DSA / Competitive Programming Problems Solved (0 to 800)
     dsa_problems_solved = np.clip(np.round(dsa_score * 42 + np.random.exponential(scale=35, size=n_samples)), 0, 800).astype(int)
     
-    # 4. Project Portfolio (Mandatory: Project)
+    # 4. Project Portfolio
     projects_count = np.clip(np.round(np.random.poisson(lam=2.4, size=n_samples)), 0, 6).astype(int)
     major_project_prob = np.clip(0.12 + 0.13 * projects_count + 0.05 * (coding_score - 5.0), 0.05, 0.95)
     has_major_project = (np.random.rand(n_samples) < major_project_prob).astype(int)
     
-    # 5. Experience / Internships (Mandatory: Experience)
+    # 5. Work Experience & Internships
     internship_prob = np.clip(0.12 + 0.09 * (cpi - 6.5) + 0.08 * (coding_score - 5.0), 0.04, 0.85)
     internships = np.random.binomial(n=3, p=np.clip(internship_prob / 3.0, 0.02, 0.65), size=n_samples)
     
@@ -61,7 +61,7 @@ def generate_placement_dataset(n_samples=100000, random_state=42):
     hackathons_attended = np.clip(np.random.poisson(lam=1.1, size=n_samples), 0, 5).astype(int)
     certifications_count = np.clip(np.random.poisson(lam=1.4, size=n_samples), 0, 5).astype(int)
     
-    # 7. Placement Status (Logistic Decision Function calibrated to ~64-70% placement rate)
+    # 7. Placement Status (Logistic Decision Function calibrated to ~64.5% placement rate)
     z = (
         1.25 * (cpi - 7.0)
         + 0.55 * (coding_score - 5.5)
