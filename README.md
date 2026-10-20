@@ -1,57 +1,43 @@
-# 🎓 Student Campus Placement Prediction & Package Analytics
-### IT462 Machine Learning Course Project
+# 🎓 Engineering Graduate Campus Placement & Salary Prediction
+### IT462: Exploratory Data Analysis — Course Project
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Scikit-Learn](https://img.shields.io/badge/Library-Scikit--Learn-orange.svg)](https://scikit-learn.org/)
-[![Records](https://img.shields.io/badge/Records-100%2C000_Students-brightgreen.svg)](#)
-[![Status](https://img.shields.io/badge/Status-In_Progress-yellow.svg)](#)
+[![Dataset](https://img.shields.io/badge/Dataset-AMEO_2015_(AMCAT)-brightgreen.svg)](https://www.kaggle.com/datasets/manishkc06/engineering-graduate-salary-prediction)
+[![Syllabus](https://img.shields.io/badge/Curriculum-IT462_Syllabus_Aligned-purple.svg)](#)
 
 ---
 
 ## 📌 Project Overview
-This repository contains an end-to-end **Exploratory Data Analysis (EDA)** and **Supervised Machine Learning System** designed to predict **Student Campus Placement Outcomes** and analyze determinants of job offers and compensation packages.
+This repository hosts the end-to-end **Exploratory Data Analysis (EDA)**, **Inferential Statistical Modeling**, and **Predictive Classification Pipeline** for the real-world **Aspiring Minds Employment Outcome (AMEO 2015)** dataset.
 
-Due to strict student data privacy regulations (DPDP Act / FERPA) prohibiting public sharing of private academic records, this project uses a large-scale, statistically modeled institutional benchmark of **100,000 university students** across 8 engineering and technical disciplines.
+The project investigates the multi-dimensional determinants of employment outcomes for Indian engineering graduates, analyzing how academic track records (`collegeGPA`, 10th/12th percentages), standardized cognitive competencies (Logical, Quantitative, English), technical programming mastery, college institutional tiers, and personality traits impact placement success and compensation packages (`Salary`).
 
-### Key Objectives
-1. **Classification:** Predict whether a student gets placed (`placement_status`: 0 = Unplaced, 1 = Placed).
-2. **Feature Impact Analysis:** Quantify the relative importance of academic standing (`cpi`), problem-solving ability (`coding_score`, `dsa_problems_solved`), project portfolio (`projects_count`), and prior industry experience (`internships`, `experience_months`).
-3. **Package Distribution:** Model the salary expectations (`salary_lpa`) for placed graduates.
+The entire analytical workflow is built strictly in accordance with the **IT462 Exploratory Data Analysis Syllabus** (covering Classical Tukey EDA, Missingness Mechanisms, Descriptive Shape & Dispersion, Correlation & Multicollinearity, Linear Data Fitting, and Advanced PCA / Automated Profiling).
 
 ---
 
-## 📊 Dataset Schema (100,000 Records, 18 Features)
+## 📊 Dataset Specification (AMEO 2015: 2,998 Records, 34 Features)
 
-| Feature | Type | Range / Values | Description |
-| :--- | :--- | :--- | :--- |
-| `student_id` | String | `STU_000001` - `STU_100000` | Unique student identifier |
-| `branch` | Categorical | CSE, ICT, IT, ECE, MnC, EE, Mechanical, Civil | Engineering / Technology discipline |
-| `cpi` | Numerical | 4.50 – 10.00 | Cumulative Performance Index |
-| `attendance_rate` | Numerical | 60.0% – 100.0% | Overall classroom attendance percentage |
-| `backlogs` | Numerical | 0 – 4 | Active / cleared backlog courses |
-| `coding_score` | Numerical | 1.0 – 10.0 | Overall programming proficiency rating |
-| `dsa_score` | Numerical | 1.0 – 10.0 | Data Structures & Algorithms rating |
-| `dsa_problems_solved` | Numerical | 0 – 800+ | Total DSA / LeetCode problems solved |
-| `projects_count` | Numerical | 0 – 6 | Number of completed projects |
-| `has_major_project` | Binary | 0 or 1 | Completed a Capstone / Full-Stack / ML project |
-| `internships` | Numerical | 0 – 3 | Number of corporate internships completed |
-| `experience_months` | Numerical | 0 – 18 | Total cumulative internship/work experience in months |
-| `aptitude_score` | Numerical | 25.0 – 100.0 | Standardized company aptitude test score |
-| `communication_skills` | Numerical | 2.0 – 10.0 | Interviewer communication rating |
-| `hackathons_attended` | Numerical | 0 – 5 | Hackathons / competitive technical events |
-| `certifications_count` | Numerical | 0 – 5 | Professional online certifications completed |
-| **`placement_status`** | Binary Target | 0 (Unplaced) / 1 (Placed) | **Primary classification target (~64.5% placed)** |
-| **`salary_lpa`** | Numerical Target | 3.50 – 48.00 LPA | Annual CTC package in Lakhs Per Annum (NaN for unplaced) |
+* **Source:** Real-world National Employability Study by Aspiring Minds (AMCAT), hosted on [Kaggle](https://www.kaggle.com/datasets/manishkc06/engineering-graduate-salary-prediction).
+* **Sample Size:** 2,998 actual engineering graduates across India.
+* **Feature Categories:**
+  * **Academic Background:** `collegeGPA`, `10percentage`, `10board`, `12percentage`, `12board`, `Degree`, `Specialization`, `GraduationYear`.
+  * **Institutional Context:** `CollegeTier` (Tier 1 vs Tier 2), `CollegeCityTier`, `CollegeState`.
+  * **AMCAT Cognitive Competencies:** `English`, `Logical`, `Quant` (Standardized national percentiles).
+  * **Technical & Domain Expertise:** `ComputerProgramming`, `Domain`, `ComputerScience`, `ElectronicsAndSemicon`, `MechanicalEngg`, `ElectricalEngg`, `CivilEngg`.
+  * **Psychometric Personality Inventory (Five-Factor Model):** `conscientiousness`, `agreeableness`, `extraversion`, `nueroticism`, `openess_to_experience`.
+  * **Placement Outcomes:** `Salary` (Continuous annual CTC in INR) and derived placement classification tiers.
 
 ---
 
-## 👥 Team Work Allocation & Responsibilities
+## 👥 Syllabus-Aligned Team Work Allocation
 
-| Team Member | Assigned Stages | Focus Areas & Deliverables | Notebook |
-| :--- | :--- | :--- | :--- |
-| **Dhruven** | **Stage 1 & 2A** | Data inspection, null value handling (`salary_lpa` unplaced logic), boundary validation, and **Univariate Distributions** (CPI, Coding, Projects, Experience, Backlogs). | `notebooks/01_dhruven_cleaning_univariate.ipynb` |
-| **Prit** | **Stage 2B** | Outlier analysis, skewness treatment, feature engineering (`tech_readiness_score`, `experience_weight`), correlation heatmaps, and **Bivariate / Multivariate EDA** (CPI vs Placement, Coding vs Salary). | `notebooks/02_prit_transformation_bivariate.ipynb` |
-| **Punit** | **Stage 3 & 4** | Stratified Train-Test split (80/20), Feature scaling, Model training (Logistic Regression, Decision Trees, Random Forest, Gradient Boosting), Hyperparameter tuning, ROC-AUC/F1 evaluation, Feature Importance, and **Executive Report**. | `notebooks/03_punit_model_building.ipynb` |
+| Team Member | Assigned Stages | Syllabus Modules Covered | Focus Areas & Deliverables | Starter Notebook |
+| :--- | :--- | :--- | :--- | :--- |
+| **Dhruven** | **Stage 1 & 2A** | **Modules 2, 4, 5, 6, 7** | Measurement scales classification (Nominal, Ordinal, Interval, Ratio); Missingness diagnostics (**MCAR, MAR, MNAR** with `missingno`); Data cleaning & invalid code handling (`-1` domain scores); Descriptive summaries (**Mean, Median, Mode, Variance, Std Dev, IQR, MAD, Coefficient of Variation, Tukey's Five-Number Summary, Skewness, Kurtosis**); Univariate distributions (**Histograms, KDE Density Plots, Boxplots, Violin Plots, Bar Charts**). | [`notebooks/01_dhruven_cleaning_univariate.ipynb`](notebooks/01_dhruven_cleaning_univariate.ipynb) |
+| **Prit** | **Stage 2B** | **Modules 7 & 8** | Bivariate & multivariate analysis (**Scatter Plots, Covariance, Grouped Violin Plots, Crosstabs with marginals, Heatmaps**); Correlation analysis (**Pearson vs Spearman comparison, Correlation Matrix**); Multicollinearity diagnostics using **VIF (Variance Inflation Factor)**; Data fitting & Regression modeling (**Simple & Multiple Linear Regression for Salary, Goodness of Fit $R^2$, Adjusted $R^2$, Residual diagnostics**). | [`notebooks/02_prit_transformation_bivariate.ipynb`](notebooks/02_prit_transformation_bivariate.ipynb) |
+| **Punit** | **Stage 3 & 4** | **Modules 1, 3, 9** | Sampling design (**Stratified 80/20 train-test split**); Advanced EDA via **PCA (Principal Component Analysis)** on cognitive/domain scores (**Scree plot, Explained Variance Ratio, 2D Biplot**); Automated EDA profiling report using **Sweetviz / ydata-profiling**; Interactive data storytelling using **Plotly Dashboards**; Supervised placement classification benchmark and **Executive Synthesis Report**. | [`notebooks/03_punit_model_building.ipynb`](notebooks/03_punit_model_building.ipynb) |
 
 ---
 
@@ -61,16 +47,15 @@ Due to strict student data privacy regulations (DPDP Act / FERPA) prohibiting pu
 campus-placement-eda-ml/
 ├── data/
 │   ├── raw/
-│   │   └── student_placement_data.csv       # 100,000-row benchmark dataset
+│   │   └── Engineering_graduate_salary.csv  # Real-world AMEO benchmark (2,998 rows, 34 columns)
 │   └── processed/                           # Cleaned and feature-engineered datasets
 ├── notebooks/
 │   ├── 01_dhruven_cleaning_univariate.ipynb     # Stage 1 & 2A (Dhruven)
 │   ├── 02_prit_transformation_bivariate.ipynb   # Stage 2B (Prit)
 │   └── 03_punit_model_building.ipynb            # Stage 3 & 4 (Punit)
-├── scripts/
-│   └── generate_placement_data.py           # Reproducible data generation script
 ├── models/                                  # Exported trained models (.joblib / .pkl)
-├── reports/                                 # Visual figures, plots, and final report PDF
+├── reports/                                 # Visual figures, plots, Sweetviz HTML report & final report PDF
+│   └── figures/
 ├── .gitignore
 ├── README.md
 └── requirements.txt
@@ -80,15 +65,16 @@ campus-placement-eda-ml/
 
 ## 🚀 Quickstart
 
-### 1. Clone & Set Up
+### 1. Clone & Set Up Environment
 ```bash
 git clone https://github.com/punit169/campus-placement-eda-ml.git
 cd campus-placement-eda-ml
 pip install -r requirements.txt
 ```
 
-### 2. Verify Dataset
-```bash
-python scripts/generate_placement_data.py
+### 2. Verify Dataset Ingestion
+```python
+import pandas as pd
+df = pd.read_csv('data/raw/Engineering_graduate_salary.csv')
+print(f"Loaded: {df.shape[0]} rows x {df.shape[1]} columns")
 ```
-*(The raw dataset is already pre-generated and stored in `data/raw/student_placement_data.csv`)*
