@@ -47,5 +47,9 @@ venv.bak/
 .DS_Store
 Thumbs.db
 
+# Generated reports & local HTML outputs
+reports/
+*.html
+
 # Large dataset raw backups (optional, un-comment if files are >100MB)
 # data/raw/*.zip

@@ -46,7 +46,7 @@ Every single topic and keyword from Appendix - I of the official IT462 syllabus 
 | **Module 7** | **Univariate & Bivariate Analysis** | Numeric & Visualization methods: Histogram, Density Plot (KDE), Boxplot, Violin Plot, Bar Chart, Scatter Plot, Covariance Matrix, Correlation, Crosstabs with marginals, Heatmaps | **Dhruven** (Univariate) & **Prit** (Bivariate) | `01_dhruven_cleaning_univariate.ipynb` (Section 8) & `02_prit_transformation_bivariate.ipynb` (Section 3, 4, 5) |
 | **Module 8** | **Correlation Analysis & Data Fitting** | Pearson Correlation; Spearman Rank Correlation; Correlation Matrix; Multicollinearity (VIF); Regression models (Simple & Multiple Linear Regression); Goodness of Fit ($R^2$, Adj $R^2$, RMSE, Residual vs Fitted, Q-Q Plot) | **Prit** | `02_prit_transformation_bivariate.ipynb` (Section 4, 6, 7) |
 | **Module 9** | **Advanced EDA & Dashboards** | Principal Component Analysis (PCA: Scree Plot, 2D Biplot); Time Series EDA & Trend Detection (Graduation cohorts 2010–2015, Rolling 2-yr Averages, Academic Lag); Seasonality; Automated Profiling (Sweetviz, ydata-profiling, D-Tale); Plotly Interactive Dashboards; Data Storytelling; Tableau/PowerBI Export | **Punit** | `03_punit_model_building.ipynb` (Section 4, 5, 6, 7) |
-| **Final Project** | **Applied Modeling & Synthesis** | Collect real empirical dataset; Address research difficulties; Benchmark 4 ML Models; ROC Curves; Confusion Matrices; Feature Importance; PO1–PO5 Outcomes Synthesis | **Punit (Lead)**, **Dhruven**, **Prit** | All Notebooks & `reports/` |
+| **Final Project** | **Applied Modeling & Synthesis** | Collect real empirical dataset; Address research difficulties; Benchmark 4 ML Models; ROC Curves; Confusion Matrices; Feature Importance; PO1–PO5 Outcomes Synthesis | **Punit (Lead)**, **Dhruven**, **Prit** | All Notebooks & README |
 
 ---
 
@@ -76,10 +76,6 @@ campus-placement-eda-ml/
 │   ├── 02_prit_transformation_bivariate.ipynb   # Stage 2B (Prit)
 │   └── 03_punit_model_building.ipynb            # Stage 3 & 4 (Punit)
 ├── models/                                  # Exported trained models (.joblib / .pkl)
-├── reports/                                 # Visual figures, plots, HTML reports & dashboard
-│   └── figures/
-│       ├── sweetviz_placement_report.html       # Automated Sweetviz profiling
-│       └── interactive_placement_dashboard.html # Interactive Plotly dashboard
 ├── .gitignore
 ├── README.md
 └── requirements.txt
